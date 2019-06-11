@@ -1,0 +1,19 @@
+CC=gcc
+CFLAGS=-Wall -g -pthread
+SRCS=slave.c master.c
+OBJS=slave.o master.o
+
+.c.o:
+	$(CC) $(CFLAGS) -c $<
+
+all: slave master
+
+slave: $(OBJS)
+	$(CC) $(CFLAGS) slave.o -o slave
+
+master: $(OBJS)
+	$(CC) $(CFLAGS) master.o -o master
+
+
+clean:
+	rm -f $(OBJS) slave master
